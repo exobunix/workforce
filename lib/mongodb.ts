@@ -8,7 +8,19 @@ try {
   // Ignore in restricted environments
 }
 
-const uri = process.env.MONGODB_URI || "mongodb+srv://adarshdeepsachan_db_user:Do3OT5HokRM9tI0c@workforce.f18zegk.mongodb.net/workforce?retryWrites=true&w=majority";
+function getMongoUri(): string {
+  if (process.env.MONGODB_URI) {
+    return process.env.MONGODB_URI;
+  }
+  if (process.env.MONGODB_USERNAME && process.env.MONGODB_PASSWORD) {
+    const user = encodeURIComponent(process.env.MONGODB_USERNAME);
+    const pass = encodeURIComponent(process.env.MONGODB_PASSWORD);
+    return `mongodb+srv://${user}:${pass}@workforce.f18zegk.mongodb.net/workforce?retryWrites=true&w=majority`;
+  }
+  return "mongodb+srv://adarshdeepsachan_db_user:Do3OT5HokRM9tI0c@workforce.f18zegk.mongodb.net/workforce?retryWrites=true&w=majority";
+}
+
+const uri = getMongoUri();
 const dbName = process.env.MONGODB_DB_NAME || "workforce";
 
 declare global {

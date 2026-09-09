@@ -1,8 +1,8 @@
 import ImageKit from "imagekit";
 
-const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || "public_uzSklsoDFlGNoIPGFtTdcYJU32Y=";
+const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || process.env.IMAGEKIT_PUBLIC_KEY || "public_uzSklsoDFlGNoIPGFtTdcYJU32Y=";
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY || "private_Zgjm0jSmxe2S76y3kkULZ5nzEvo=";
-const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || "https://ik.imagekit.io/avdarinn";
+const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || process.env.IMAGEKIT_URL_ENDPOINT || "https://ik.imagekit.io/avdarinn";
 const defaultFolder = process.env.IMAGEKIT_DEFAULT_FOLDER || "workforce";
 
 export const imagekit = new ImageKit({
